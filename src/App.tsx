@@ -2,7 +2,9 @@ function App() {
 
   return (
     <>
-    <p>Chandan Gowda Nandakumar</p>
+      <p>
+        Welcome to Chandan Gowda Nandakumar's portfolio website!
+      </p>
     </>
   )
 }
