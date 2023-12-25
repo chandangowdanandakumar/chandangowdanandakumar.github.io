@@ -2,7 +2,7 @@ function App() {
 
   return (
     <>
-      <p>
+      <p className="text-xl font-bold text-red-500">
         Welcome to Chandan Gowda Nandakumar's portfolio website!
       </p>
     </>
