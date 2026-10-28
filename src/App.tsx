@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 // ── Config ──────────────────────────────────────────────────────────────────
 const config = {
@@ -33,18 +34,21 @@ const config = {
       name: 'Mini Search Engine',
       description: 'A mini search engine exploring indexing, ranking, and query algorithms from scratch.',
       github: 'https://github.com/chandangowdanandakumar/mini-search-engine',
+      slug: 'mini-search-engine',
       tech: ['Java'],
     },
     {
       name: 'Behavioral Questions',
       description: 'A curated collection of behavioral interview questions with structured STAR answers.',
       github: 'https://github.com/chandangowdanandakumar/behavioral-questions',
+      slug: 'behavioral-questions',
       tech: ['Markdown'],
     },
     {
       name: 'Portfolio Website',
       description: 'This portfolio — built with React, TypeScript, and Tailwind CSS, deployed via GitHub Pages.',
       github: 'https://github.com/chandangowdanandakumar/chandangowdanandakumar.github.io',
+      slug: '',
       tech: ['React', 'TypeScript', 'Tailwind'],
     },
   ],
@@ -307,16 +311,28 @@ function Projects() {
                 <a href={p.github} target="_blank" rel="noreferrer" className="text-[#a8b2d1] hover:text-[#64ffda] transition-colors">
                   <GithubIcon />
                 </a>
-                <a href={p.github} target="_blank" rel="noreferrer" className="text-[#a8b2d1] hover:text-[#64ffda] transition-colors">
-                  <ExternalIcon />
-                </a>
+                {p.slug ? (
+                  <Link to={`/projects/${p.slug}`} className="text-[#a8b2d1] hover:text-[#64ffda] transition-colors">
+                    <ExternalIcon />
+                  </Link>
+                ) : (
+                  <a href={p.github} target="_blank" rel="noreferrer" className="text-[#a8b2d1] hover:text-[#64ffda] transition-colors">
+                    <ExternalIcon />
+                  </a>
+                )}
               </div>
             </div>
 
             <div>
-              <h3 className="text-[#ccd6f6] font-medium text-lg mb-2 group-hover:text-[#64ffda] transition-colors">
-                {p.name}
-              </h3>
+              {p.slug ? (
+                <Link to={`/projects/${p.slug}`}>
+                  <h3 className="text-[#ccd6f6] font-medium text-lg mb-2 group-hover:text-[#64ffda] transition-colors">
+                    {p.name}
+                  </h3>
+                </Link>
+              ) : (
+                <h3 className="text-[#ccd6f6] font-medium text-lg mb-2">{p.name}</h3>
+              )}
               <p className="text-[#8892b0] text-sm leading-relaxed">{p.description}</p>
             </div>
 
