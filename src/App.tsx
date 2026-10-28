@@ -23,7 +23,7 @@ const config = {
     { name: 'Blog', url: '#blog' },
     { name: 'Contact', url: '#contact' },
   ],
-  skills: ['Java', 'React.js', 'TypeScript', 'Express.js', 'GraphQL', 'AWS', 'React Native', 'Neo4j'],
+  skills: ['Java', 'React.js', 'TypeScript', 'Express.js', 'GraphQL', 'AWS', 'React Native', 'Neo4j', 'Python', 'Node.js', 'Docker', 'Kubernetes', 'PostgreSQL', 'GCP'],
   experience: [
     {
       company: 'Amazon',
@@ -53,8 +53,10 @@ const config = {
       range: 'Jan 2024 — Jul 2024',
       url: '#',
       bullets: [
-        'Backend Java development for fintech products serving a large customer base.',
-        'Built scalable services and APIs in a fast-paced financial services environment.',
+        'Designed a multithreaded OCR backend processing 11,500 bank checks monthly at 99.8% accuracy, eliminating 100% of manual review work.',
+        'Improved user engagement 25% by building responsive React.js interfaces with SCSS animations tuned for performance.',
+        'Cut load time by 300ms via code splitting and lazy loading across the frontend.',
+        'Implemented AES-256 encryption for sensitive bank check data, achieving full GDPR compliance with zero security breaches.',
       ],
     },
     {
@@ -63,9 +65,12 @@ const config = {
       range: 'May 2022 — Nov 2023',
       url: 'https://rocketmortgage.com',
       bullets: [
+        'Architected scalable micro-frontend components in React.js, boosting code reusability and test coverage to 90%.',
         'Developed API endpoints for Rocket FOC clients, improving data retrieval efficiency and enabling seamless access to customer information.',
         'Built interactive dashboards using React.js and Neo4j graph database for efficient data management and storage.',
-        'Led front-end development using Express.js and contributed across the full stack.',
+        'Resolved on-call issues through systematic troubleshooting and root-cause analysis, improving system reliability.',
+        'Wrote unit, regression, and performance tests while refactoring the codebase for better modularity and maintainability.',
+        'Automated the test pipeline with CircleCI, triggering commit-based test runs and a centralized results portal.',
       ],
     },
     {
@@ -74,9 +79,22 @@ const config = {
       range: 'May 2021 — May 2022',
       url: 'https://asu.edu',
       bullets: [
-        'Led creation of an interactive web application for dashboards leveraging Neo4j and React.js.',
-        'Transformed web app to a React Native mobile app, leading to a 26% increase in customer engagement.',
+        'Led creation of an interactive dashboard application using Neo4j and React.js, with custom D3.js data visualizations deployed on NGINX.',
+        'Increased daily active users 26% by migrating a hybrid web app to a React Native mobile app.',
+        'Optimized server performance for 3 million users with NGINX load-balancing algorithms.',
         'Guided 200 undergraduate students as Development Team Lead in the Grand Challenges program.',
+      ],
+    },
+    {
+      company: 'Wipro',
+      title: 'Software Engineer',
+      range: 'Jul 2019 — Dec 2020',
+      url: 'https://wipro.com',
+      bullets: [
+        'Improved system response time by 180ms by analyzing and optimizing SQL queries and execution plans.',
+        'Reduced application load time by 48ms using profiling tools to detect and resolve performance bottlenecks.',
+        'Built cross-browser-compatible, accessible hybrid mobile apps with code minification, resource bundling, and caching.',
+        'Benchmarked page load times with monitoring tools, continuously identifying and closing performance gaps.',
       ],
     },
   ],
@@ -153,6 +171,13 @@ const config = {
       github: 'https://github.com/chandangowdanandakumar/chandangowdanandakumar.github.io',
       slug: '',
       tech: ['React', 'TypeScript', 'Tailwind'],
+    },
+    {
+      name: 'Image-based Search Engine for E-commerce Products',
+      description: 'Visual search and analysis pipeline for e-commerce listings — web scraping, data cleanup, and customer-pattern visualization to support data-driven decisions.',
+      github: '',
+      slug: '',
+      tech: ['Python', 'Pandas', 'Matplotlib', 'Tableau'],
     },
   ],
 }
@@ -290,7 +315,8 @@ function About() {
             Science from Bangalore University.
           </p>
           <p>
-            My career spans backend systems at{' '}
+            Over 5 years I've gone from backend work at Wipro in Bangalore to building distributed
+            systems at{' '}
             <a href="https://amazon.com" className="text-[#4f46e5] hover:underline underline-offset-4">Amazon</a>
             {', '}contract test engineering at{' '}
             <a href="https://google.com" className="text-[#4f46e5] hover:underline underline-offset-4">Google</a>
@@ -390,7 +416,7 @@ function ProjectLink({
   if (project.slug) {
     return <Link to={`/projects/${project.slug}`} className={className}>{children}</Link>
   }
-  if (wrapExternal) {
+  if (wrapExternal && project.github) {
     return <a href={project.github} target="_blank" rel="noreferrer" className={className}>{children}</a>
   }
   return <>{children}</>
@@ -431,14 +457,18 @@ function Projects() {
           >
             <div className="flex items-center justify-between">
               <FolderIcon />
-              <div className="flex items-center gap-3">
-                <a href={p.github} target="_blank" rel="noreferrer" className="text-[#64748b] hover:text-[#4f46e5] transition-colors">
-                  <GithubIcon />
-                </a>
-                <ProjectLink project={p} className="text-[#64748b] hover:text-[#4f46e5] transition-colors">
-                  <ExternalIcon />
-                </ProjectLink>
-              </div>
+              {(p.github || p.slug) && (
+                <div className="flex items-center gap-3">
+                  {p.github && (
+                    <a href={p.github} target="_blank" rel="noreferrer" className="text-[#64748b] hover:text-[#4f46e5] transition-colors">
+                      <GithubIcon />
+                    </a>
+                  )}
+                  <ProjectLink project={p} className="text-[#64748b] hover:text-[#4f46e5] transition-colors">
+                    <ExternalIcon />
+                  </ProjectLink>
+                </div>
+              )}
             </div>
 
             <div>
