@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Calibre', 'Inter', system-ui, sans-serif;
+}
+
+::selection {
+  background-color: rgba(79, 70, 229, 0.15);
+  color: #0f172a;
+}
+
+@keyframes fadeup {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes loader-exit {
+  0%   { opacity: 1; visibility: visible; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+.animate-fadeup {
+  animation: fadeup 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) both;
+}
+
+.animate-fadein {
+  animation: fadein 0.5s ease both;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+.animate-loader-exit {
+  animation: loader-exit 0.4s ease 1.6s both;
+}
+
+.font-mono {
+  font-family: 'Fira Code', 'SF Mono', 'Fira Mono', 'Roboto Mono', monospace;
+}
